@@ -32,6 +32,13 @@ public:
     void clear();
     void push_back(int value);
     void pop_back();
+    void operator=(int value);
+    void insert(int index, int value);
+    void erase(int index);
+    bool operator!=(const Vector &other) const;
+    bool operator==(const Vector &other) const;
+    bool operator>=(const Vector &other) const;
+    bool operator<=(const Vector &other) const;
 
 };
 

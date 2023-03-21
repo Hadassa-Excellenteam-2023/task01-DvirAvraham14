@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.15)
+cmake_minimum_required (VERSION 3.24)
 
 project (task_week1_dvir_avraham)
 
@@ -17,7 +17,7 @@ if (MSVC)
     add_compile_options (/W4 /permissive- /Zc:externConstexpr /Zc:inline)
 endif ()
 
-add_executable (task_week1_dvir_avraham "" include/Vector.h src/Vector.cpp)
+add_executable (task_week1_dvir_avraham "" include/Vector.h src/Vector.cpp include/Stack.h src/Stack.cpp)
 
 
 add_subdirectory (include)
