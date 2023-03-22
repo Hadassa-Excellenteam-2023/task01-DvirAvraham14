@@ -14,6 +14,7 @@
 class Vector {
 private:
     int* _data;
+protected:
     int _size;
     int _capacity;
 public:
@@ -23,8 +24,8 @@ public:
     Vector& operator=(const Vector& other);
     int& operator[](int index);
     int operator[](int index) const;
-    bool empty();
-    int size() const;
+    bool empty() const;
+    size_t size() const;
     int* data() const;
     void swap(Vector& other);
     void reserve(size_t newCapacity);

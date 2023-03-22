@@ -8,8 +8,9 @@
 #include <cstdio>
 #include "Vector.h"
 
-class Stack : public Vector {
-    using Vector::Vector;
+class Stack  {
+protected:
+    Vector _data;
 
 public:
     explicit Stack(size_t size, int value = 0);
@@ -26,11 +27,13 @@ public:
     bool operator!=(const Stack& other) const;
     bool operator>(const Stack& other) const;
     bool operator<(const Stack& other) const;
-    void operator/=(const Stack& other) const;
-    void operator*=(int value) const;
-    void operator+=(int value) const;
-    void operator-=(int value) const;
-    bool operator+(int value) const;
-    Stack operator+(const Stack& other);
+    void operator/=(int);
+    void operator*=(int);
+    void operator+=(int);
+    void operator-=(int);
+    void operator+=(Stack& other) const;
 };
+
+Stack& operator+(const Stack&, const Stack&);
+
 #endif //TASK_WEEK1_DVIR_AVRAHAM_STACK_H

@@ -11,7 +11,7 @@
 Vector::Vector(size_t size, int value) {
     _data = new int[size];
     _size = size;
-    _capacity = size;
+    _capacity = size*2;
     for (int i = 0; i < size; i++) {
         _data[i] = value;
     }
@@ -19,14 +19,14 @@ Vector::Vector(size_t size, int value) {
 
 // destructor
 Vector::~Vector() {
-    delete[] _data;
+    delete [] _data;
 }
 
 // copy constructor
 Vector::Vector(const Vector &other) {
-    _data = new int[other._size];
-    _size = other._size;
-    _capacity = other._size;
+    _data = new int[other.size()];
+    _size = other.size();
+    _capacity = other.size();
     for (int i = 0; i < _size; i++) {
         _data[i] = other._data[i];
     }
@@ -34,15 +34,15 @@ Vector::Vector(const Vector &other) {
 
 // assignment operator
 Vector &Vector::operator=(const Vector &other) {
-    if (this != &other) {
-        delete[] _data;
-        _data = new int[other._size];
-        _size = other._size;
-        _capacity = other._size;
-        for (int i = 0; i < _size; i++) {
-            _data[i] = other._data[i];
-        }
-    }
+    if (this == &other)
+        return *this;
+    delete[] _data;
+    _data = new int[other._size];
+    _size = other._size;
+    _capacity = other._size;
+    for (int i = 0; i < _size; i++)
+        _data[i] = other._data[i];
+
     return *this;
 }
 
@@ -61,12 +61,12 @@ int Vector::operator[](int index) const {
 }
 
 // return true if the vector is empty, and false otherwise.
-bool Vector::empty() {
+bool Vector::empty() const {
     return _size == 0;
 }
 
 // return the number of elements in the vector.
-int Vector::size() const {
+size_t Vector::size() const {
     return _size;
 }
 
@@ -117,7 +117,7 @@ void Vector::clear() {
 // add value to the end of the vector.
 void Vector::push_back(int value) {
     if (_size == _capacity)
-        reserve(_capacity * (_size < 128) ? 2 : 1.5);
+        reserve(_capacity * ((_size < 128) ? 2 : 1.5));
     _data[_size] = value;
     _size++;
 }

@@ -1,7 +1,8 @@
 #include <iostream>
-#include "Vector.h"
+#include "Stack.h"
 
 int main(int argc, const char * argv[]) {
+
     Vector v(5, 10);  // create vector of size 5 with all elements initialized to 10
     std::cout << "v: ";
     for (int i = 0; i < v.size(); i++) {
@@ -49,6 +50,34 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < v.size(); i++)
         std::cout << v[i] << " ";
     std::cout << std::endl;
+
+    // Create some stacks and push some values into them
+    Stack s1(1, 1);
+    s1.push(2);
+    s1.push(3);
+
+    Stack s2(s1);
+    s2 = s1;
+
+    // Test the operators and methods of the stack class
+    while(!s2.isEmpty()){
+        std::cout << s2.pop() << std::endl;
+    }
+    std::cout << std::endl;
+    s2 = Stack(s1);
+    std::cout << "s2 += s1 " << std::endl;
+    s2 += 2;
+    Stack s3 = s2 + s1;
+    while(!s3.isEmpty()){
+        std::cout << "x:\t";
+        std::cout << s3.pop() << std::endl;
+    }
+    std::cout << std::endl;
+
+    std::cout << "s1 == s2: " << (s1 == s2) << std::endl;
+    std::cout << "s1 != s2: " << (s1 != s2) << std::endl;
+    std::cout << "s1 > s2: " << (s1 > s2) << std::endl;
+    std::cout << "s1 < s2: " << (s1 < s2) << std::endl;
 
     return 0;
 }
